@@ -50,15 +50,13 @@
         var timestamp = document.querySelector('#timestamp');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (timestamp.value) {
-                var info = document.querySelector('.info');
-                var url = `${document.location.origin}/api/timestamp/${timestamp.value}`;
-                fetch(url)
-                    .then((res) => res.json())
-                    .then((res) => {
-                    info.innerHTML = JSON.stringify(res);
-                    });
-            }
+            var info = document.querySelector('.info');
+            var url = `${document.location.origin}/api/timestamp/${timestamp.value}`;
+            fetch(url)
+                .then((res) => res.json())
+                .then((res) => {
+                info.innerHTML = JSON.stringify(res);
+                });
         })
     </script>
     <footer class="text-center mt-24 text-base md:text-2xl">
