@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Timestamp Microservice</title>
+  </head>
+  <body class="bg-gradient-to-b from-purple-300 min-h-screen px-4 to-purple-100">
+    <section
+      class="max-w-md mt-12 mx-auto p-4 rounded-2xl shadow-2xl text-center bg-purple-100"
+    >
+      <h1 class="text-2xl md:text-4xl text-gray-700 font-black">
+        APIs and Microservices Projects - Timestamp Microservice
+      </h1>
+      <h3 class="mt-8 text-xl md:text-2xl text-gray-800">Example usage:</h3>
+      <a
+        class="mt-4 block text-base md:text-xl text-purple-700 hover:text-gray-700 underline"
+        href="/api/timestamp/1451001600000"
+        >[project url]/api/timestamp/1451001600000
+      </a>
+      <a
+        class="mt-4 block text-base md:text-xl text-purple-700 hover:text-gray-700 underline"
+        href="/api/timestamp/2015-12-25"
+        >[project url]/api/timestamp/2015-12-25
+      </a>
+      <form class="form mt-4 border border-purple-300 rounded p-4 flex flex-col">
+          <div class="flex flex-col mb-2">
+              <div class="flex justify-between">
+
+                  <label for="timestamp" class="text-gray-800 flex justify-between">
+                      <span class="font-semibold">Timestamp</span>
+                  </label>
+              </div>
+            <input type="text" name="timestamp" id="timestamp" class="rounded p-2">
+        </div>
+          <button type="Sumbit" class="p-2 bg-purple-500 rounded text-white font-semibold uppercase mt-4 self-start" >What's the time?</button>
+      </form>
+      <h3 class="mt-8 text-xl md:text-2xl text-gray-700">Example output:</h3>
+      <p
+        class="mx-auto bg-gray-800 max-w-2xl mt-8 rounded-xl p-4 md:text-xl break-words font-mono info text-green-200"
+      ></p>
+    </section>
+    <script>
+        var form = document.querySelector('.form');
+        var timestamp = document.querySelector('#timestamp');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (timestamp.value) {
+                var info = document.querySelector('.info');
+                var url = `${document.location.origin}/api/timestamp/${timestamp.value}`;
+                fetch(url)
+                    .then((res) => res.json())
+                    .then((res) => {
+                    info.innerHTML = JSON.stringify(res);
+                    });
+            }
+        })
+    </script>
+    <footer class="text-center mt-24 text-base md:text-2xl">
+      by
+      <a
+        href="http://github.com/josewhitetower"
+        class="text-purple-700 hover:text-gray-700"
+        >josewhitetower</a
+      >
+    </footer>
+  </body>
+</html>
