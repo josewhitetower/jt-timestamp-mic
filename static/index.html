@@ -46,10 +46,15 @@
       ></p>
     </section>
     <script>
+        document.addEventListener('DOMContentLoaded', getData)
         var form = document.querySelector('.form');
         var timestamp = document.querySelector('#timestamp');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+            getData()
+        })
+
+        function getData() {
             var info = document.querySelector('.info');
             var url = `${document.location.origin}/api/timestamp/${timestamp.value}`;
             fetch(url)
@@ -57,7 +62,7 @@
                 .then((res) => {
                 info.innerHTML = JSON.stringify(res);
                 });
-        })
+        }
     </script>
     <footer class="text-center mt-24 text-base md:text-2xl">
       by
