@@ -14,14 +14,14 @@ import (
 )
 
 func main() {
-	var dir string
-	flag.StringVar(&dir, "dir", "./static", "the directory to serve files from. Defaults to the current dir")
-	flag.Parse()
 	r := mux.NewRouter()
-	// This will serve files under http://localhost:8000/static/<filename>
 	r.HandleFunc("/api/timestamp/{timestamp}", handleWithTimestamp)
 	r.HandleFunc("/api/timestamp/", handleWithOutTimestamp)
 	r.HandleFunc("/api/timestamp", handleWithOutTimestamp)
+	var dir string
+	flag.StringVar(&dir, "dir", "./static", "the directory to serve files from. Defaults to the current dir")
+	flag.Parse()
+	// This will serve files under http://localhost:8000/static/<filename>
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(dir))))
 
 	port := getPort()
